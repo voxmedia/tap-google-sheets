@@ -1,0 +1,33 @@
+version: 1
+send_anonymous_usage_stats: true
+project_id: "tap-google-sheets"
+default_environment: test
+environments:
+- name: test
+plugins:
+  extractors:
+  - name: "tap-google-sheets"
+    namespace: "tap_google_sheets"
+    pip_url: -e .
+    capabilities:
+    - state
+    - catalog
+    - discover
+    - about
+    - stream-maps
+    config:
+      service_account_path: /Users/hunter.kuffel/Downloads/dagster-prod-service-account.json
+      sheet_id: 1e-Bzk8ReOUXeYM0fFJbo32p9feJucuBA8N6rq31f1GM
+      child_sheet_name: lookup
+    stream_maps:
+        lookup:
+          __alias__: newsletter_metadata
+          __filter__: newsletter_name != "do not change"
+    settings:
+    - name: service_account_path
+    - name: sheet_id
+    - name: child_sheet_name
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl

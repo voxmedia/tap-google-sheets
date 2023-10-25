@@ -18,7 +18,7 @@ requests = "^2.31.0"
 gspread = "^5.11.2"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
+pytest = "^7.4.3"
 singer-sdk = { version="^0.32.0b2", extras = ["testing"] }
 
 [tool.poetry.extras]
